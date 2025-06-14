@@ -60,7 +60,32 @@ try:
     # Create multisig account
     try:
         msig = Multisig(version=1, threshold=2, addresses=[public_key1, public_key2, public_key3])
-        print(f"Multisig address: {msig.address()}")
+        msig_address = msig.address()
+        print("\n" + "="*50)
+        print(f"IMPORTANT: Fund this multisig address first:")
+        print(f"Address: {msig_address}")
+        print("Steps to fund:")
+        print("1. Go to https://bank.testnet.algorand.network/")
+        print("2. Paste the address above")
+        print("3. Request at least 0.1 ALGO")
+        print("4. Wait for confirmation")
+        print("="*50 + "\n")
+        
+        # Check account balance
+        try:
+            account_info = algod_client.account_info(msig_address)
+            balance = account_info.get('amount', 0)
+            print(f"Current balance: {balance} microAlgos")
+            
+            if balance < 1000:
+                raise Exception(f"Please fund the multisig account {msig_address} with at least 0.1 ALGO using the Algorand Testnet Dispenser (https://bank.testnet.algorand.network/)")
+                
+        except Exception as e:
+            if "account not found" in str(e).lower():
+                raise Exception(f"Please fund the multisig account {msig_address} with at least 0.1 ALGO using the Algorand Testnet Dispenser (https://bank.testnet.algorand.network/)")
+            else:
+                raise Exception(f"Failed to check account balance: {str(e)}")
+                
     except Exception as e:
         raise Exception(f"Failed to create multisig account: {str(e)}")
     
@@ -76,10 +101,10 @@ try:
         receiver = public_key1  # For testing, we'll send to the first address
         
         txn = PaymentTxn(
-            sender=msig.address(),
+            sender=msig_address,
             sp=params,
             receiver=receiver,
-            amt=100000  # 0.1 ALGO
+            amt=1000  # 0.001 ALGO
         )
     except Exception as e:
         raise Exception(f"Failed to create transaction: {str(e)}")
@@ -118,3 +143,47 @@ except AlgodHTTPError as e:
 except Exception as e:
     error_msg = handle_error(e, "Transaction Error")
     raise Exception(str(e))
+
+# from algosdk import account, mnemonic
+# from algosdk.transaction import Multisig, MultisigTransaction
+# from algosdk.transaction import AssetTransferTxn
+# from algosdk.v2client import algod
+
+# algod_token = ""
+# algod_address = "https://testnet-api.algonode.cloud"
+
+# mnemonic1 = "mnemonic1"
+# mnemonic2 = "mnemonic2"
+# mnemonic3 = "nurse point pledge ahead guide axis frog print flag sample strategy clip tip also small angle purity plug sword enter pull meat poem about patient"
+# # Generate 3 accounts
+# private_keys = [mnemonic.to_private_key(mnemonic1), mnemonic.to_private_key(mnemonic2), mnemonic.to_private_key(mnemonic3)]
+# addresses = [account.address_from_private_key(sk) for sk in private_keys]
+
+# # Define multisig parameters (version 1, threshold 2)
+# msig = Multisig(version=1, threshold=2, addresses=addresses)
+
+# print("Multisig Address:", msig.address())
+# print("Signers:", addresses)
+
+# algod_client = algod.AlgodClient(algod_token, algod_address)
+# params = algod_client.suggested_params()
+
+# clawback_txn = AssetTransferTxn(
+#     sender=msig.address(),
+#     sp=params,
+#     receiver=addresses[2],         # to whom you send the ASA
+#     amt=10,
+#     index=741148236,           # replace with actual ASA ID
+#     revocation_target=addresses[1] # from whom to clawback
+# )
+
+# mtx = MultisigTransaction(clawback_txn, msig)
+# mtx.sign(private_keys[0])  # first signer
+# mtx.sign(private_keys[1])  # second signer
+
+# # txid = algod_client.send_raw_transaction(bytes(mtx))
+# from algosdk import encoding
+
+# txid = algod_client.send_raw_transaction(encoding.msgpack_encode(mtx))
+
+# print("Multisig Clawback TxID:", txid)
