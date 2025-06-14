@@ -1,0 +1,169 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f9fa;
+  margin: 0;
+  padding: 20px;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+h1 {
+  color: #2d3436;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+}
+
+button {
+  background-color: #00b894;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  width: 100%;
+  max-width: 220px;
+  margin: 0.5rem 0;
+}
+
+button:hover {
+  background-color: #00a884;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 184, 148, 0.3);
+}
+
+button:disabled {
+  background-color: #b2bec3;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+#connection-status {
+  margin: 1.5rem 0;
+  text-align: center;
+  display: none; /* Initially hidden until loaded */
+}
+
+#loading {
+  text-align: center;
+  margin: 20px 0;
+  color: #666;
+  font-style: italic;
+}
+
+.connect-btn {
+  background-color: #4a6cf7;
+  color: white;
+  border: none;
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 10px rgba(74, 108, 247, 0.3);
+}
+
+.connect-btn:hover {
+  background-color: #3a5bd9;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(74, 108, 247, 0.4);
+}
+
+.connect-btn:active {
+  transform: translateY(0);
+}
+
+/* QR Code Container */
+#qr-code-container {
+  margin: 1.5rem 0;
+  padding: 1.5rem;
+  background: #f8f9ff;
+  border-radius: 12px;
+  border: 1px solid #e0e4f7;
+  display: none;
+}
+
+#qr-code {
+  margin: 1rem 0;
+  display: flex;
+  justify-content: center;
+}
+
+#qr-code img {
+  border: 8px solid white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Status text */
+#wallet-address {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: #f8f9ff;
+  border-radius: 6px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+  color: #4a6cf7;
+  border: 1px solid #e0e4f7;
+}
+
+/* Loading indicator */
+.loading {
+  color: #6c757d;
+  font-style: italic;
+  margin: 1rem 0;
+  display: none; /* Hidden by default */
+}
+
+/* Error message */
+#error-message {
+  background: #fff5f5;
+  color: #e53e3e;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+  border: 1px solid #fed7d7;
+  display: none;
+}
+
+/* Small text */
+.small {
+  font-size: 0.85rem;
+  color: #6c757d;
+  margin-top: 1rem;
+  line-height: 1.5;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .container {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+  
+  h1 {
+    font-size: 1.5rem;
+  }
+  
+  #qr-code-container {
+    padding: 1rem;
+  }
+}

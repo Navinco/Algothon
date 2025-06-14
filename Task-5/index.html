@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wallet Connect Demo</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- QR Code Generator -->
+  <script src="https://cdn.jsdelivr.net/npm/davidshimjs-qrcodejs@0.0.2/qrcode.min.js"></script>
+  <script>
+    // Initialize the app
+    document.addEventListener('DOMContentLoaded', function() {
+      const loadingDiv = document.getElementById('loading');
+      const connectionStatus = document.getElementById('connection-status');
+      const connectBtn = document.getElementById('connect-wallet');
+      const qrCodeContainer = document.getElementById('qr-code');
+      
+      // Hide loading, show connection UI
+      if (loadingDiv) loadingDiv.style.display = 'none';
+      if (connectionStatus) connectionStatus.style.display = 'block';
+      
+      // Handle connect button click
+      if (connectBtn) {
+        connectBtn.onclick = function() {
+          // For demo purposes, we'll just show a QR code with test data
+          if (qrCodeContainer) {
+            qrCodeContainer.innerHTML = '';
+            new QRCode(qrCodeContainer, {
+              text: 'https://perawallet.app/connect-demo',
+              width: 200,
+              height: 200,
+              colorDark: '#000000',
+              colorLight: '#ffffff',
+              correctLevel: QRCode.CorrectLevel.H
+            });
+            
+            // Show the QR code container
+            document.getElementById('qr-code-container').style.display = 'block';
+            
+            // For demo purposes, simulate a connection after 2 seconds
+            setTimeout(() => {
+              // This is just for demo - in a real app, this would be set when the wallet connects
+              document.getElementById('wallet-address').textContent = 'Connected (Demo Mode)';
+              connectBtn.textContent = 'Disconnect';
+            }, 2000);
+          }
+        };
+      }
+    });
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1>🔗 Wallet Connect Demo</h1>
+    <div id="connection-status">
+      <button id="connect-wallet" class="connect-btn">Connect Wallet</button>
+      <div id="qr-code-container" style="display: none;">
+        <p>Scan this QR code with your wallet app</p>
+        <div id="qr-code"></div>
+        <p class="small">or open this page on your mobile device</p>
+      </div>
+      <p><strong>Status:</strong> <span id="wallet-address">Not connected</span></p>
+    </div>
+    <div id="loading" class="loading" style="text-align: center; margin: 20px 0; color: #666; font-style: italic;">Loading wallet connection...</div>
+    <div id="error-message" style="display: none; color: red; margin: 20px 0; padding: 10px; background: #ffeeee; border: 1px solid #ffcccc; border-radius: 4px;"></div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
