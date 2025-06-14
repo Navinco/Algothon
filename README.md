@@ -2,6 +2,8 @@
 
 Welcome to the AlgoThon project! This repository contains various tasks and projects related to Algorand blockchain development, including a Tic-Tac-Toe game and an NFT marketplace with team-based mechanics.
 
+NFTs and gaming have been highly for degen community. NFTs have become a way to show your gaming status. Introducing an NFT marketplace dedicated to gamers. Here, team can NFT all together, based on their level. For example : we can have a particular avatar not unlocked until a particular average level is reached by the team.
+
 ## 🏗️ Project Structure
 
 ```
