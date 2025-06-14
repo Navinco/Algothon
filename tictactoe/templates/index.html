@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplayer TicTacToe</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Setup Screen -->
+        <div id="setup-screen">
+            <h1>Multiplayer TicTacToe</h1>
+            <form id="setup-form">
+                <div class="form-group">
+                    <label for="player-name">Your Name:</label>
+                    <input type="text" id="player-name" required placeholder="Enter your name">
+                </div>
+                <div class="form-group">
+                    <label for="room">Room Name:</label>
+                    <input type="text" id="room" required placeholder="Enter room name">
+                </div>
+                <button type="submit">Join Game</button>
+            </form>
+        </div>
+
+        <!-- Waiting Screen -->
+        <div id="waiting-screen" style="display: none;">
+            <h2>Waiting for Opponent...</h2>
+            <div class="waiting-message">Please wait while we find you an opponent.</div>
+            <button onclick="leaveRoom()" class="leave-room-btn">Leave Room</button>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="game-screen" style="display: none;">
+            <div class="game-header">
+                <h2>Tic Tac Toe</h2>
+                <div class="player-info">
+                    <span>You are: </span>
+                    <span id="player-symbol" class="player-symbol"></span>
+                </div>
+                <div class="current-turn">
+                    <span>Current Turn: </span>
+                    <span id="current-player" class="current-player"></span>
+                </div>
+            </div>
+
+            <div id="game-info" class="game-info"></div>
+
+            <div class="game-board">
+                <div class="cell" data-index="0"></div>
+                <div class="cell" data-index="1"></div>
+                <div class="cell" data-index="2"></div>
+                <div class="cell" data-index="3"></div>
+                <div class="cell" data-index="4"></div>
+                <div class="cell" data-index="5"></div>
+                <div class="cell" data-index="6"></div>
+                <div class="cell" data-index="7"></div>
+                <div class="cell" data-index="8"></div>
+            </div>
+
+            <div class="scoreboard">
+                <div class="score">
+                    <span class="player-x">Player X:</span>
+                    <span id="score-x">0</span>
+                </div>
+                <div class="score">
+                    <span class="player-o">Player O:</span>
+                    <span id="score-o">0</span>
+                </div>
+            </div>
+
+            <button onclick="leaveRoom()" class="leave-room-btn">Leave Room</button>
+        </div>
+
+        <div id="message" class="message"></div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
