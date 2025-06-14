@@ -24,6 +24,8 @@ async function buyNFT() {
   const input = document.getElementById("mnemonics").value;
   const mnemonics = input.split(",").map(m => m.trim());
 
+  console.log(mnemonics);
+
   if (mnemonics.length < 2) {
     alert("Please enter 2 mnemonics");
     return;
@@ -36,6 +38,7 @@ async function buyNFT() {
       body: JSON.stringify({ mnemonics: mnemonics })
     });
     const data = await response.json();
+    console.log(data);
     document.getElementById("buy-status").innerText = data.message;
   } catch (err) {
     document.getElementById("buy-status").innerText = "Error: " + err.message;
