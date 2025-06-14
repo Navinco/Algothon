@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>NFT Marketplace</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>NFT Marketplace</h1>
+
+  <section id="admin-section">
+    <h2>Admin Panel</h2>
+    <button onclick="createNFT()">Create NFT</button>
+    <p id="nft-status"></p>
+  </section>
+
+  <section id="whitelist-section">
+    <h2>Whitelist Check</h2>
+    <input type="text" id="teamId" placeholder="Enter Team ID">
+    <button onclick="checkWhitelist()">Check Eligibility</button>
+    <p id="whitelist-result"></p>
+  </section>
+
+  <section id="buy-section">
+    <h2>Buy NFT (Multisig)</h2>
+    <textarea id="mnemonics" placeholder="Enter 2 mnemonics (comma-separated)"></textarea><br>
+    <button onclick="buyNFT()">Buy NFT</button>
+    <p id="buy-status"></p>
+  </section>
+
+  <script src="app.js"></script>
+</body>
+</html>
