@@ -1,6 +1,6 @@
 # AlgoThon - Algorand Hackathon Project
 
-Welcome to the AlgoThon project! This repository contains various tasks and projects related to Algorand blockchain development.
+Welcome to the AlgoThon project! This repository contains various tasks and projects related to Algorand blockchain development, including a Tic-Tac-Toe game and an NFT marketplace with team-based mechanics.
 
 ## 🏗️ Project Structure
 
@@ -14,18 +14,67 @@ AlgoThon/
 │               ├── check_balance.py
 │               └── generate_mnemonic.py
 │
-└── Task-2/                    # Task 2: Advanced Asset Controls & Metadata
-    └── projects/
-        └── HackToken/
-            └── scripts/
-                └── configure_asset.py
+├── Task-2/                    # Task 2: Advanced Asset Controls & Metadata
+│   └── projects/
+│       └── HackToken/
+│           └── scripts/
+│               └── configure_asset.py
+│
+├── Task-7/                    # Task 7: NFT Marketplace with Team Mechanics
+│   ├── algokit_project/       # Algorand smart contracts
+│   ├── data/                  # Player and team data
+│   ├── frontend/              # Web interface
+│   ├── scripts/               # Utility scripts
+│   ├── smart_contracts/       # Smart contract code
+│   ├── tests/                 # Test cases
+│   └── utils/                 # Helper utilities
+│
+└── tictactoe/                # Real-time Tic-Tac-Toe Game
+    ├── static/               # Frontend assets
+    │   ├── script.js
+    │   └── style.css
+    └── templates/            # HTML templates
+        └── index.html
 ```
 
-## 🚀 Getting Started
+## 🚀 Featured Projects
 
-Each task has its own directory with specific instructions. Navigate to the task you're interested in for more details.
+### 🎮 Tic-Tac-Toe Game
+A real-time multiplayer Tic-Tac-Toe game built with Flask and Socket.IO.
 
-## 📋 Tasks
+**Features:**
+- Real-time gameplay with WebSockets
+- Score tracking
+- Multiple game rooms
+- Player matching system
+
+**How to run:**
+```bash
+cd tictactoe
+pip install -r requirements.txt
+python server.py
+```
+Then open `http://localhost:5000` in your browser.
+
+### 🖼️ Task 7: NFT Marketplace with Team Mechanics
+A comprehensive NFT marketplace with team-based mechanics and whitelisting functionality.
+
+**Features:**
+- Multi-signature NFT purchases
+- Team-based whitelisting
+- Player leveling system
+- Frontend interface for interaction
+
+**How to run:**
+```bash
+cd Task-7
+python -m venv venv7
+source venv7/bin/activate  # On Windows: venv7\Scripts\activate
+pip install -r requirements.txt
+python server.py
+```
+
+## 📋 All Tasks
 
 ### 1. Task 1: Basic ASA Token
 - Created a custom token on Algorand TestNet
@@ -38,12 +87,21 @@ Each task has its own directory with specific instructions. Navigate to the task
 - Added freeze and clawback functionality
 - [View Task 2 Details](Task-2/README.md)
 
+### 3. Task 7: NFT Marketplace with Team Mechanics (Featured Above)
+- Multi-signature NFT purchases
+- Team-based whitelisting
+- Player leveling system
+- [View Task 7 Details](Task-7/README.md)
+
 ## ⚙️ Prerequisites
 
 - Python 3.8+
+- Node.js (for frontend development)
 - Algorand SDK (`pip install py-algorand-sdk`)
 - A funded Algorand TestNet account (get ALGOs from the [TestNet Dispenser](https://bank.testnet.algorand.network/))
 - Python-dotenv (`pip install python-dotenv`)
+- Flask (`pip install flask`)
+- Flask-SocketIO (`pip install flask-socketio`)
 
 ## 🔧 Setup
 
