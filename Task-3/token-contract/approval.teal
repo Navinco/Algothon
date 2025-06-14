@@ -264,7 +264,7 @@ byte "Admin"
 txn Sender
 app_global_put
 byte "ASA_ID"
-int 741148236
+int 741149664
 app_global_put
 byte "Whitelist"
 txn Sender
@@ -272,7 +272,7 @@ concat
 int 1
 app_global_put
 byte "Contract created with ASA ID: "
-int 741148236
+int 741149664
 itob
 concat
 log
